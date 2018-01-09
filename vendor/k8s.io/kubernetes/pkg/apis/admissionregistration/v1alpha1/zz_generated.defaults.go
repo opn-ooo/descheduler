@@ -28,43 +28,5 @@ import (
 // Public to allow building arbitrary schemes.
 // All generated defaulters are covering - they call all nested defaulters.
 func RegisterDefaults(scheme *runtime.Scheme) error {
-	scheme.AddTypeDefaultingFunc(&ExternalAdmissionHookConfiguration{}, func(obj interface{}) {
-		SetObjectDefaults_ExternalAdmissionHookConfiguration(obj.(*ExternalAdmissionHookConfiguration))
-	})
-	scheme.AddTypeDefaultingFunc(&ExternalAdmissionHookConfigurationList{}, func(obj interface{}) {
-		SetObjectDefaults_ExternalAdmissionHookConfigurationList(obj.(*ExternalAdmissionHookConfigurationList))
-	})
-	scheme.AddTypeDefaultingFunc(&InitializerConfiguration{}, func(obj interface{}) { SetObjectDefaults_InitializerConfiguration(obj.(*InitializerConfiguration)) })
-	scheme.AddTypeDefaultingFunc(&InitializerConfigurationList{}, func(obj interface{}) {
-		SetObjectDefaults_InitializerConfigurationList(obj.(*InitializerConfigurationList))
-	})
 	return nil
-}
-
-func SetObjectDefaults_ExternalAdmissionHookConfiguration(in *ExternalAdmissionHookConfiguration) {
-	for i := range in.ExternalAdmissionHooks {
-		a := &in.ExternalAdmissionHooks[i]
-		SetDefaults_ExternalAdmissionHook(a)
-	}
-}
-
-func SetObjectDefaults_ExternalAdmissionHookConfigurationList(in *ExternalAdmissionHookConfigurationList) {
-	for i := range in.Items {
-		a := &in.Items[i]
-		SetObjectDefaults_ExternalAdmissionHookConfiguration(a)
-	}
-}
-
-func SetObjectDefaults_InitializerConfiguration(in *InitializerConfiguration) {
-	for i := range in.Initializers {
-		a := &in.Initializers[i]
-		SetDefaults_Initializer(a)
-	}
-}
-
-func SetObjectDefaults_InitializerConfigurationList(in *InitializerConfigurationList) {
-	for i := range in.Items {
-		a := &in.Items[i]
-		SetObjectDefaults_InitializerConfiguration(a)
-	}
 }
