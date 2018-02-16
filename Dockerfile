@@ -11,10 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+FROM golang:1.9.2
 
-FROM fedora
+WORKDIR /go/src/github.com/kubernetes-incubator/descheduler
+COPY . .
+RUN make
+
+FROM scratch
 
 MAINTAINER Avesh Agarwal <avagarwa@redhat.com>
 
-COPY _output/bin/descheduler /bin/descheduler
-CMD ["/bin/descheduler --help"]
+COPY --from=0 /go/src/github.com/kubernetes-incubator/descheduler/_output/bin/descheduler /bin/descheduler
+
+CMD ["/bin/descheduler", "--help"]
