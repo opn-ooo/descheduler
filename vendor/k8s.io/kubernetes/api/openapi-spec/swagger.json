@@ -20106,7 +20106,7 @@
   },
   "info": {
     "title": "Kubernetes",
-    "version": "v1.16.3"
+    "version": "v1.16.4"
   },
   "paths": {
     "/api/": {
